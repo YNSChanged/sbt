@@ -3,9 +3,9 @@ var https = require('https');
 var options = {
     hostname: 'localhost',
     port: 8000,
-    key: fs.readFileSync("certs/clientKey.key"),
-    cert: fs.readFileSync("certs/client.crt"),
-    ca: fs.readFileSync('certs/CA.crt'),
+    key: fs.readFileSync("client/certs/clientKey.key"),
+    cert: fs.readFileSync("client/certs/client.crt"),
+    ca: fs.readFileSync('client/certs/CA.crt'),
     method: "POST"
 };
 
