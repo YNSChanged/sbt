@@ -3,7 +3,8 @@ var https = require('https');
 var options = {
     key: fs.readFileSync('certs/serverKey.key'),
     cert: fs.readFileSync('certs/server.crt'),
-    ca: fs.readFileSync('certs/CA.crt')
+    ca: [fs.readFileSync('certs/CA.crt'), fs.readFileSync('certs/client.crt')],
+    requestCert: true
 };
 
 var server = https.createServer(options, function (req, res) {
@@ -17,5 +18,3 @@ var server = https.createServer(options, function (req, res) {
         console.log(body + new Date());
     });
 }).listen(8000);
-
-
