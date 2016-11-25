@@ -1,9 +1,9 @@
 var fs = require('fs');
 var https = require('https');
 var options = {
-    key: fs.readFileSync('certs/serverKey.key'),
-    cert: fs.readFileSync('certs/server.crt'),
-    ca: [fs.readFileSync('certs/CA.crt'), fs.readFileSync('certs/client.crt')],
+    key: fs.readFileSync('server/certs/serverKey.key'),
+    cert: fs.readFileSync('server/certs/server.crt'),
+    ca: [fs.readFileSync('server/certs/CA.crt'), fs.readFileSync('server/certs/client.crt')],
     requestCert: true
 };
 
@@ -14,7 +14,8 @@ var server = https.createServer(options, function (req, res) {
     }).on('data', function(chunk) {
         body.push(chunk);
     }).on('end', function() {
-        body = Buffer.concat(body).toString();
-        console.log(body + new Date());
+        console.log(body + " : " + new Date());
     });
+    res.end();
 }).listen(8000);
+
